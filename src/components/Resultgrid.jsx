@@ -11,9 +11,21 @@ const Resultgrid = () => {
   useEffect(
     function () {
       async function data() {
-        
         try {
-          if (!query) return;
+          if (!query)
+            return (
+              <div className="flex items-center justify-center min-h-[60vh]">
+                <div className="text-center max-w-md">
+                  <h2 className="text-2xl font-semibold text-gray-700 mb-2">
+                    Start searching
+                  </h2>
+                  <p className="text-gray-500 text-sm">
+                    Type something in the search box to see photos, videos, or
+                    GIFs.
+                  </p>
+                </div>
+              </div>
+            );
           let res = [];
           dispatch(setloading());
           if (activeTab === "Photo") {
@@ -56,28 +68,26 @@ const Resultgrid = () => {
     },
     [query, activeTab]
   );
-if (error)
-  return (
-    <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
-      <div className="text-red-500 text-4xl mb-3">⚠️</div>
-      <h2 className="text-xl font-semibold text-gray-700 mb-1">
-        Something went wrong
-      </h2>
-      <p className="text-gray-500 text-sm">
-        Please try again after some time.
-      </p>
-    </div>
-  );
+  if (error)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
+        <div className="text-red-500 text-4xl mb-3">⚠️</div>
+        <h2 className="text-xl font-semibold text-gray-700 mb-1">
+          Something went wrong
+        </h2>
+        <p className="text-gray-500 text-sm">
+          Please try again after some time.
+        </p>
+      </div>
+    );
 
- if (loading)
-  return (
-    <div className="flex flex-col items-center justify-center min-h-[50vh]">
-      <div className="w-10 h-10 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-      <p className="text-gray-600 text-lg font-medium">
-        Loading results...
-      </p>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[50vh]">
+        <div className="w-10 h-10 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+        <p className="text-gray-600 text-lg font-medium">Loading results...</p>
+      </div>
+    );
 
   return (
     <div
